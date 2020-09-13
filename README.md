@@ -56,104 +56,135 @@ technology stack built on the following principles:
 
 ## API
 
-- [Interface metatests](#interface-metatests)
-  - [case](#casecaption-namespace-list-runner)
-  - [DeclarativeTest](#class-declarativetest-extends-test)
-    - [DeclarativeTest.prototype.constructor](#declarativetestprototypeconstructorcaption-namespace-list-options)
-    - [DeclarativeTest.prototype.run](#declarativetestprototyperun)
-    - [DeclarativeTest.prototype.runNow](#declarativetestprototyperunnow)
-  - [equal](#equalval1-val2)
-  - [strictEqual](#strictequalval1-val2)
-  - [reporters.Reporter](#class-reportersreporter)
-    - [reporters.Reporter.prototype.constructor](#reportersreporterprototypeconstructoroptions)
-    - [reporters.Reporter.prototype.error](#reportersreporterprototypeerrortest-error)
-    - [reporters.Reporter.prototype.finish](#reportersreporterprototypefinish)
-    - [reporters.Reporter.prototype.log](#reportersreporterprototypelogargs)
-    - [reporters.Reporter.prototype.logComment](#reportersreporterprototypelogcommentargs)
-    - [reporters.Reporter.prototype.record](#reportersreporterprototyperecordtest)
-  - [reporters.ConciseReporter](#class-reportersconcisereporter-extends-reporter)
-    - [reporters.ConciseReporter.prototype.constructor](#reportersconcisereporterprototypeconstructoroptions)
-    - [reporters.ConciseReporter.prototype.error](#reportersconcisereporterprototypeerrortest-error)
-    - [reporters.ConciseReporter.prototype.finish](#reportersconcisereporterprototypefinish)
-    - [reporters.ConciseReporter.prototype.listFailure](#reportersconcisereporterprototypelistfailuretest-res-message)
-    - [reporters.ConciseReporter.prototype.parseTestResults](#reportersconcisereporterprototypeparsetestresultstest-subtest)
-    - [reporters.ConciseReporter.prototype.printAssertErrorSeparator](#reportersconcisereporterprototypeprintasserterrorseparator)
-    - [reporters.ConciseReporter.prototype.printSubtestSeparator](#reportersconcisereporterprototypeprintsubtestseparator)
-    - [reporters.ConciseReporter.prototype.printTestSeparator](#reportersconcisereporterprototypeprinttestseparator)
-    - [reporters.ConciseReporter.prototype.record](#reportersconcisereporterprototyperecordtest)
-  - [reporters.TapReporter](#class-reporterstapreporter-extends-reporter)
-    - [reporters.TapReporter.prototype.constructor](#reporterstapreporterprototypeconstructoroptions)
-    - [reporters.TapReporter.prototype.error](#reporterstapreporterprototypeerrortest-error)
-    - [reporters.TapReporter.prototype.finish](#reporterstapreporterprototypefinish)
-    - [reporters.TapReporter.prototype.listFailure](#reporterstapreporterprototypelistfailuretest-res-offset)
-    - [reporters.TapReporter.prototype.logComment](#reporterstapreporterprototypelogcommentargs)
-    - [reporters.TapReporter.prototype.parseTestResults](#reporterstapreporterprototypeparsetestresultstest-offset--0)
-    - [reporters.TapReporter.prototype.record](#reporterstapreporterprototyperecordtest)
-  - [runner.Runner](#class-runnerrunner-extends-eventemitter)
-    - [runner.Runner.prototype.constructor](#runnerrunnerprototypeconstructoroptions)
-    - [runner.Runner.prototype.addTest](#runnerrunnerprototypeaddtesttest)
-    - [runner.Runner.prototype.finish](#runnerrunnerprototypefinish)
-    - [runner.Runner.prototype.removeReporter](#runnerrunnerprototyperemovereporter)
-    - [runner.Runner.prototype.resume](#runnerrunnerprototyperesume)
-    - [runner.Runner.prototype.runTodo](#runnerrunnerprototyperuntodoactive--true)
-    - [runner.Runner.prototype.setReporter](#runnerrunnerprototypesetreporterreporter)
-    - [runner.Runner.prototype.wait](#runnerrunnerprototypewait)
-  - [runner.instance](#runnerinstance)
-  - [speed](#speedcaption-count-cases)
-  - [measure](#measurecases-options)
-  - [convertToCsv](#converttocsvresults)
-  - [ImperativeTest](#class-imperativetest-extends-test)
-    - [ImperativeTest.prototype.constructor](#imperativetestprototypeconstructorcaption-func-options)
-    - [ImperativeTest.prototype.afterEach](#imperativetestprototypeaftereachfunc)
-    - [ImperativeTest.prototype.assert](#imperativetestprototypeassertvalue-message)
-    - [ImperativeTest.prototype.assertNot](#imperativetestprototypeassertnotvalue-message)
-    - [ImperativeTest.prototype.bailout](#imperativetestprototypebailouterr-message)
-    - [ImperativeTest.prototype.beforeEach](#imperativetestprototypebeforeeachfunc)
-    - [ImperativeTest.prototype.case](#imperativetestprototypecasemessage-namespace-list-options--)
-    - [ImperativeTest.prototype.cb](#imperativetestprototypecbmsg-cb)
-    - [ImperativeTest.prototype.cbFail](#imperativetestprototypecbfailfail-cb-afterallcb)
-    - [ImperativeTest.prototype.contains](#imperativetestprototypecontainsactual-subobj-message-sort-test)
-    - [ImperativeTest.prototype.containsGreedy](#imperativetestprototypecontainsgreedyactual-subobj-message-sort-test)
-    - [ImperativeTest.prototype.doesNotThrow](#imperativetestprototypedoesnotthrowfn-message)
-    - [ImperativeTest.prototype.end](#imperativetestprototypeend)
-    - [ImperativeTest.prototype.endAfterSubtests](#imperativetestprototypeendaftersubtests)
-    - [ImperativeTest.prototype.equal](#imperativetestprototypeequalactual-expected-message)
-    - [ImperativeTest.prototype.error](#imperativetestprototypeerrorerr-message)
-    - [ImperativeTest.prototype.fail](#imperativetestprototypefailmessage-err)
-    - [ImperativeTest.prototype.is](#imperativetestprototypeischeckfn-val-message)
-    - [ImperativeTest.prototype.isArray](#imperativetestprototypeisarrayval-message)
-    - [ImperativeTest.prototype.isBuffer](#imperativetestprototypeisbufferval-message)
-    - [ImperativeTest.prototype.isError](#imperativetestprototypeiserroractual-expected-message)
-    - [ImperativeTest.prototype.isRejected](#imperativetestprototypeisrejectedinput-err)
-    - [ImperativeTest.prototype.isResolved](#imperativetestprototypeisresolvedinput-expected)
-    - [ImperativeTest.prototype.mustCall](#imperativetestprototypemustcallfn-count-name)
-    - [ImperativeTest.prototype.mustNotCall](#imperativetestprototypemustnotcallfn-name)
-    - [ImperativeTest.prototype.notEqual](#imperativetestprototypenotequalactual-expected-message)
-    - [ImperativeTest.prototype.notOk](#imperativetestprototypenotokvalue-message)
-    - [ImperativeTest.prototype.notSameTopology](#imperativetestprototypenotsametopologyobj1-obj2-message)
-    - [ImperativeTest.prototype.ok](#imperativetestprototypeokvalue-message)
-    - [ImperativeTest.prototype.on](#imperativetestprototypeonname-listener)
-    - [ImperativeTest.prototype.pass](#imperativetestprototypepassmessage)
-    - [ImperativeTest.prototype.plan](#imperativetestprototypeplann)
-    - [ImperativeTest.prototype.regex](#imperativetestprototyperegexregex-input-message)
-    - [ImperativeTest.prototype.rejects](#imperativetestprototyperejectsinput-err)
-    - [ImperativeTest.prototype.resolves](#imperativetestprototyperesolvesinput-expected)
-    - [ImperativeTest.prototype.run](#imperativetestprototyperun)
-    - [ImperativeTest.prototype.same](#imperativetestprototypesameactual-expected-message)
-    - [ImperativeTest.prototype.sameTopology](#imperativetestprototypesametopologyobj1-obj2-message)
-    - [ImperativeTest.prototype.strictEqual](#imperativetestprototypestrictequalactual-expected-message)
-    - [ImperativeTest.prototype.strictNotSame](#imperativetestprototypestrictnotsameactual-expected-message)
-    - [ImperativeTest.prototype.strictSame](#imperativetestprototypestrictsameactual-expected-message)
-    - [ImperativeTest.prototype.test](#imperativetestprototypetestcaption-func-options)
-    - [ImperativeTest.prototype.testAsync](#imperativetestprototypetestasyncmessage-func-options--)
-    - [ImperativeTest.prototype.testSync](#imperativetestprototypetestsyncmessage-func-options--)
-    - [ImperativeTest.prototype.throws](#imperativetestprototypethrowsfn-expected-message)
-    - [ImperativeTest.prototype.type](#imperativetestprototypetypeobj-type-message)
-  - [test](#testcaption-func-options-runner)
-  - [testSync](#testsynccaption-func-options---runner--runnerinstance)
-  - [testAsync](#testasynccaption-func-options---runner--runnerinstance)
+- [test](#testcaption-func-options-runner)
+- [testAsync](#testasynccaption-func-options---runner--runnerinstance)
+- [testSync](#testsynccaption-func-options---runner--runnerinstance)
+- [case](#casecaption-namespace-list-runner)
+- [ImperativeTest](#class-imperativetest-extends-test)
+  - [ImperativeTest.prototype.constructor](#imperativetestprototypeconstructorcaption-func-options)
+  - [ImperativeTest.prototype.afterEach](#imperativetestprototypeaftereachfunc)
+  - [ImperativeTest.prototype.assert](#imperativetestprototypeassertvalue-message)
+  - [ImperativeTest.prototype.assertNot](#imperativetestprototypeassertnotvalue-message)
+  - [ImperativeTest.prototype.bailout](#imperativetestprototypebailouterr-message)
+  - [ImperativeTest.prototype.beforeEach](#imperativetestprototypebeforeeachfunc)
+  - [ImperativeTest.prototype.case](#imperativetestprototypecasemessage-namespace-list-options--)
+  - [ImperativeTest.prototype.cb](#imperativetestprototypecbmsg-cb)
+  - [ImperativeTest.prototype.cbFail](#imperativetestprototypecbfailfail-cb-afterallcb)
+  - [ImperativeTest.prototype.contains](#imperativetestprototypecontainsactual-subobj-message-sort-test)
+  - [ImperativeTest.prototype.containsGreedy](#imperativetestprototypecontainsgreedyactual-subobj-message-sort-test)
+  - [ImperativeTest.prototype.doesNotThrow](#imperativetestprototypedoesnotthrowfn-message)
+  - [ImperativeTest.prototype.end](#imperativetestprototypeend)
+  - [ImperativeTest.prototype.endAfterSubtests](#imperativetestprototypeendaftersubtests)
+  - [ImperativeTest.prototype.equal](#imperativetestprototypeequalactual-expected-message)
+  - [ImperativeTest.prototype.error](#imperativetestprototypeerrorerr-message)
+  - [ImperativeTest.prototype.fail](#imperativetestprototypefailmessage-err)
+  - [ImperativeTest.prototype.is](#imperativetestprototypeischeckfn-val-message)
+  - [ImperativeTest.prototype.isArray](#imperativetestprototypeisarrayval-message)
+  - [ImperativeTest.prototype.isBuffer](#imperativetestprototypeisbufferval-message)
+  - [ImperativeTest.prototype.isError](#imperativetestprototypeiserroractual-expected-message)
+  - [ImperativeTest.prototype.isRejected](#imperativetestprototypeisrejectedinput-err)
+  - [ImperativeTest.prototype.isResolved](#imperativetestprototypeisresolvedinput-expected)
+  - [ImperativeTest.prototype.mustCall](#imperativetestprototypemustcallfn-count-name)
+  - [ImperativeTest.prototype.mustNotCall](#imperativetestprototypemustnotcallfn-name)
+  - [ImperativeTest.prototype.notEqual](#imperativetestprototypenotequalactual-expected-message)
+  - [ImperativeTest.prototype.notOk](#imperativetestprototypenotokvalue-message)
+  - [ImperativeTest.prototype.notSameTopology](#imperativetestprototypenotsametopologyobj1-obj2-message)
+  - [ImperativeTest.prototype.ok](#imperativetestprototypeokvalue-message)
+  - [ImperativeTest.prototype.on](#imperativetestprototypeonname-listener)
+  - [ImperativeTest.prototype.pass](#imperativetestprototypepassmessage)
+  - [ImperativeTest.prototype.plan](#imperativetestprototypeplann)
+  - [ImperativeTest.prototype.regex](#imperativetestprototyperegexregex-input-message)
+  - [ImperativeTest.prototype.rejects](#imperativetestprototyperejectsinput-err)
+  - [ImperativeTest.prototype.resolves](#imperativetestprototyperesolvesinput-expected)
+  - [ImperativeTest.prototype.run](#imperativetestprototyperun)
+  - [ImperativeTest.prototype.same](#imperativetestprototypesameactual-expected-message)
+  - [ImperativeTest.prototype.sameTopology](#imperativetestprototypesametopologyobj1-obj2-message)
+  - [ImperativeTest.prototype.strictEqual](#imperativetestprototypestrictequalactual-expected-message)
+  - [ImperativeTest.prototype.strictNotSame](#imperativetestprototypestrictnotsameactual-expected-message)
+  - [ImperativeTest.prototype.strictSame](#imperativetestprototypestrictsameactual-expected-message)
+  - [ImperativeTest.prototype.test](#imperativetestprototypetestcaption-func-options)
+  - [ImperativeTest.prototype.testAsync](#imperativetestprototypetestasyncmessage-func-options--)
+  - [ImperativeTest.prototype.testSync](#imperativetestprototypetestsyncmessage-func-options--)
+  - [ImperativeTest.prototype.throws](#imperativetestprototypethrowsfn-expected-message)
+  - [ImperativeTest.prototype.type](#imperativetestprototypetypeobj-type-message)
+- [DeclarativeTest](#class-declarativetest-extends-test)
+  - [DeclarativeTest.prototype.constructor](#declarativetestprototypeconstructorcaption-namespace-list-options)
+  - [DeclarativeTest.prototype.run](#declarativetestprototyperun)
+  - [DeclarativeTest.prototype.runNow](#declarativetestprototyperunnow)
+- [equal](#equalval1-val2)
+- [strictEqual](#strictequalval1-val2)
+- [reporters.Reporter](#class-reportersreporter)
+  - [reporters.Reporter.prototype.constructor](#reportersreporterprototypeconstructoroptions)
+  - [reporters.Reporter.prototype.error](#reportersreporterprototypeerrortest-error)
+  - [reporters.Reporter.prototype.finish](#reportersreporterprototypefinish)
+  - [reporters.Reporter.prototype.log](#reportersreporterprototypelogargs)
+  - [reporters.Reporter.prototype.logComment](#reportersreporterprototypelogcommentargs)
+  - [reporters.Reporter.prototype.record](#reportersreporterprototyperecordtest)
+- [reporters.ConciseReporter](#class-reportersconcisereporter-extends-reporter)
+  - [reporters.ConciseReporter.prototype.constructor](#reportersconcisereporterprototypeconstructoroptions)
+  - [reporters.ConciseReporter.prototype.error](#reportersconcisereporterprototypeerrortest-error)
+  - [reporters.ConciseReporter.prototype.finish](#reportersconcisereporterprototypefinish)
+  - [reporters.ConciseReporter.prototype.listFailure](#reportersconcisereporterprototypelistfailuretest-res-message)
+  - [reporters.ConciseReporter.prototype.parseTestResults](#reportersconcisereporterprototypeparsetestresultstest-subtest)
+  - [reporters.ConciseReporter.prototype.printAssertErrorSeparator](#reportersconcisereporterprototypeprintasserterrorseparator)
+  - [reporters.ConciseReporter.prototype.printSubtestSeparator](#reportersconcisereporterprototypeprintsubtestseparator)
+  - [reporters.ConciseReporter.prototype.printTestSeparator](#reportersconcisereporterprototypeprinttestseparator)
+  - [reporters.ConciseReporter.prototype.record](#reportersconcisereporterprototyperecordtest)
+- [reporters.TapReporter](#class-reporterstapreporter-extends-reporter)
+  - [reporters.TapReporter.prototype.constructor](#reporterstapreporterprototypeconstructoroptions)
+  - [reporters.TapReporter.prototype.error](#reporterstapreporterprototypeerrortest-error)
+  - [reporters.TapReporter.prototype.finish](#reporterstapreporterprototypefinish)
+  - [reporters.TapReporter.prototype.listFailure](#reporterstapreporterprototypelistfailuretest-res-offset)
+  - [reporters.TapReporter.prototype.logComment](#reporterstapreporterprototypelogcommentargs)
+  - [reporters.TapReporter.prototype.parseTestResults](#reporterstapreporterprototypeparsetestresultstest-offset--0)
+  - [reporters.TapReporter.prototype.record](#reporterstapreporterprototyperecordtest)
+- [runner.Runner](#class-runnerrunner-extends-eventemitter)
+  - [runner.Runner.prototype.constructor](#runnerrunnerprototypeconstructoroptions)
+  - [runner.Runner.prototype.addTest](#runnerrunnerprototypeaddtesttest)
+  - [runner.Runner.prototype.finish](#runnerrunnerprototypefinish)
+  - [runner.Runner.prototype.removeReporter](#runnerrunnerprototyperemovereporter)
+  - [runner.Runner.prototype.resume](#runnerrunnerprototyperesume)
+  - [runner.Runner.prototype.runTodo](#runnerrunnerprototyperuntodoactive--true)
+  - [runner.Runner.prototype.setReporter](#runnerrunnerprototypesetreporterreporter)
+  - [runner.Runner.prototype.wait](#runnerrunnerprototypewait)
+- [runner.instance](#runnerinstance)
+- [speed](#speedcaption-count-cases)
+- [measure](#measurecases-options)
+- [convertToCsv](#converttocsvresults)
 
-### Interface: metatests
+#### test(caption, func\[, options\[, runner\]\])
+
+- `caption`: [`<string>`][string] name of the test
+- `func`: [`<Function>`][function] test function
+  - `test`: [`<ImperativeTest>`][imperativetest] test instance
+- `options`: `<TestOptions>`
+  - `run`: [`<boolean>`][boolean] auto start test, default: true
+  - `async`: [`<boolean>`][boolean] if true do nothing, if false auto-end test
+    on nextTick after `func` run, default: true
+  - `timeout`: [`<number>`][number] time in milliseconds after which test is
+    considered timeouted.
+  - `parallelSubtests`: [`<boolean>`][boolean] if true subtests will be run in
+    parallel, otherwise subtests are run sequentially, default: false
+  - `dependentSubtests`: [`<boolean>`][boolean] if true each subtest will be
+    executed sequentially in order of addition to the parent test
+    short-circuiting if any subtest fails, default: false
+- `runner`: [`<Runner>`][runner] runner instance to use to run this test
+
+_Returns:_ [`<ImperativeTest>`][imperativetest] test instance
+
+Create a test case.
+
+#### testAsync(caption, func, options = {}, runner = runnerInstance)
+
+Create an asynchronous test
+
+Simple wrapper for [`test()`][test()] setting `async` option to `true`.
+
+#### testSync(caption, func, options = {}, runner = runnerInstance)
+
+Create a synchronous test
+
+Simple wrapper for [`test()`][test()] setting `async` option to `false`.
 
 #### case(caption, namespace, list, runner)
 
@@ -166,7 +197,405 @@ technology stack built on the following principles:
 - `runner`: [`<Runner>`][runner] runner for this case test, optional, default:
   `metatests.runner.instance`
 
-Create declarative test
+_Returns:_ `<DeclarativeTest>` test instance
+
+Create a declarative test
+
+#### class ImperativeTest extends Test
+
+##### ImperativeTest.prototype.constructor(caption, func, options)
+
+##### ImperativeTest.prototype.afterEach(func)
+
+- `func`: [`<Function>`][function]
+  - `subtest`: [`<ImperativeTest>`][imperativetest] test instance
+  - `callback`: [`<Function>`][function]
+  - _Returns:_ [`<Promise>`][promise]|`<void>`
+
+Set a function to run after each subtest.
+
+The function must either return a promise or call a callback.
+
+##### ImperativeTest.prototype.assert(value\[, message\])
+
+- `value`: `<any>` value to check
+- `message`: [`<string>`][string] description of the check, optional
+
+Check if value is truthy.
+
+##### ImperativeTest.prototype.assertNot(value\[, message\])
+
+- `value`: `<any>` value to check
+- `message`: [`<string>`][string] description of the check, optional
+
+Check if value is falsy.
+
+##### ImperativeTest.prototype.bailout(\[err\]\[, message\])
+
+- `err`: [`<Error>`][error] bailout error
+- `message`: [`<string>`][string] bailout message
+
+Fail this test and throw an error.
+
+If both `err` and `message` are provided `err.toString()` will be appended to
+`message`.
+
+##### ImperativeTest.prototype.beforeEach(func)
+
+- `func`: [`<Function>`][function]
+  - `subtest`: [`<ImperativeTest>`][imperativetest] test instance
+  - `callback`: [`<Function>`][function]
+    - `context`: `<any>` context of the test. It will pe passed as a second
+      argument to test function and is available at `test.context`
+  - _Returns:_ [`<Promise>`][promise]|`<void>` nothing or `Promise` resolved
+    with context
+
+Set a function to run before each subtest.
+
+The function must either return a promise or call a callback.
+
+##### ImperativeTest.prototype.case(message, namespace, list, options = {})
+
+Create a declarative [`case()`][case()] subtest of this test.
+
+##### ImperativeTest.prototype.cb(\[msg\]\[, cb\])
+
+- `msg`: [`<string>`][string] test.error message
+- `cb`: [`<Function>`][function] callback function
+
+_Returns:_ [`<Function>`][function] function to pass to callback
+
+Create error-first callback wrapper to perform automatic checks.
+
+This will check for [`test.mustCall()`][test.mustcall()] the callback and
+`{test.error()}` the first callback argument.
+
+##### ImperativeTest.prototype.cbFail(\[fail\]\[, cb\[, afterAllCb\]\])
+
+- `fail`: [`<string>`][string] test.fail message
+- `cb`: [`<Function>`][function] callback function to call if there was no error
+- `afterAllCb`: [`<Function>`][function] function called after callback handling
+
+_Returns:_ [`<Function>`][function] function to pass to callback
+
+Create error-first callback wrapper to fail test if call fails.
+
+This will check for [`test.mustCall()`][test.mustcall()] the callback and if the
+call errored will use [`test.fail()`][test.fail()] and
+[`test.end()`][test.end()]
+
+##### ImperativeTest.prototype.contains(actual, subObj\[, message\[, sort\[, test\]\]\])
+
+- `actual`: `<any>` actual data
+- `subObj`: `<any>` expected properties
+- `message`: [`<string>`][string] description of the check, optional
+- `sort`: `<boolean | Function>` if true or a sort function sort data
+  properties, default: false
+- `test`: [`<Function>`][function] test function, default: compare.strictEqual
+  - `actual`: `<any>`
+  - `expected`: `<any>`
+  - _Returns:_ [`<boolean>`][boolean] true if actual is equal to expected, false
+    otherwise
+
+Check that actual contains all properties of subObj.
+
+Properties will be compared with test function.
+
+##### ImperativeTest.prototype.containsGreedy(actual, subObj\[, message\[, sort\[, test\]\]\])
+
+- `actual`: `<any>` actual data
+- `subObj`: `<any>` expected properties
+- `message`: [`<string>`][string] description of the check, optional
+- `test`: [`<Function>`][function] test function, default: compare.strictEqual
+  - `actual`: `<any>`
+  - `expected`: `<any>`
+  - _Returns:_ [`<boolean>`][boolean] true if actual is equal to expected, false
+    otherwise
+
+Check greedily that actual contains all properties of subObj.
+
+Similar to [`test.contains()`][test.contains()] but will succeed if at least one
+of the properties in actual match the one in subObj.
+
+##### ImperativeTest.prototype.doesNotThrow(fn\[, message\])
+
+- `fn`: [`<Function>`][function] function to run
+- `message`: [`<string>`][string] description of the check, optional
+
+Check that fn doesn't throw.
+
+##### ImperativeTest.prototype.end()
+
+Finish the test.
+
+This will fail if the test has unfinished subtests or plan is not complete.
+
+##### ImperativeTest.prototype.endAfterSubtests()
+
+Mark this test to call end after its subtests are done.
+
+##### ImperativeTest.prototype.equal(actual, expected\[, message\])
+
+- `actual`: `<any>` actual data
+- `expected`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected for non-strict equality.
+
+##### ImperativeTest.prototype.error(err\[, message\])
+
+- `err`: `<any>` error to check
+- `message`: [`<string>`][string] description of the check, optional
+
+Fail if err is instance of Error.
+
+##### ImperativeTest.prototype.fail(\[message\]\[, err\])
+
+- `message`: `<string | Error>` failure message or error, optional
+- `err`: [`<Error>`][error] error, optional
+
+Fail this test recording failure message.
+
+This doesn't call [`test.end()`][test.end()].
+
+##### ImperativeTest.prototype.is(checkFn, val\[, message\])
+
+- `checkFn`: [`<Function>`][function] condition function
+  - `val`: `<any>` provided value
+- _Returns:_ [`<boolean>`][boolean] true if condition is satisfied and false
+  otherwise
+- `val`: `<any>` value to check the condition against
+- `message`: [`<string>`][string] check message, optional
+
+Check whether `val` satisfies custom `checkFn` condition.
+
+##### ImperativeTest.prototype.isArray(val\[, message\])
+
+- `val`: `<any>` value to check
+- `message`: [`<string>`][string] check message, optional
+
+Check if `val` satisfies `Array.isArray`.
+
+##### ImperativeTest.prototype.isBuffer(val\[, message\])
+
+- `val`: `<any>` value to check
+- `message`: [`<string>`][string] check message, optional
+
+Check if `val` satisfies `Buffer.isBuffer`.
+
+##### ImperativeTest.prototype.isError(actual\[, expected\[, message\]\])
+
+- `actual`: `<any>` actual error to compare
+- `expected`: `<any>` expected error, default: new Error()
+- `message`: [`<string>`][string] description of the check, optional
+
+Check if actual is equal to expected error.
+
+##### ImperativeTest.prototype.isRejected(input, err)
+
+- `input`: `<Promise | Function>` promise of function returning thenable
+- `err`: `<any>` value to be checked with [`test.isError()`][test.iserror()]
+  against rejected value
+
+Check that input rejects.
+
+##### ImperativeTest.prototype.isResolved(input\[, expected\])
+
+- `input`: `<Promise | Function>` promise of function returning thenable
+- `expected`: `<any>` if passed it will be checked with
+  [`test.strictSame()`][test.strictsame()] against resolved value
+
+Verify that input resolves.
+
+##### ImperativeTest.prototype.mustCall(\[fn\[, count\[, name\]\]\])
+
+- `fn`: [`<Function>`][function] function to be checked, default: () => {}
+- `count`: [`<number>`][number] amount of times fn must be called, default: 1
+- `name`: [`<string>`][string] name of the function, default: 'anonymous'
+
+_Returns:_ [`<Function>`][function] function to check with, will forward all
+arguments to fn, and result from fn
+
+Check that fn is called specified amount of times.
+
+##### ImperativeTest.prototype.mustNotCall(\[fn\[, name\]\])
+
+- `fn`: [`<Function>`][function] function to not be checked, default: () => {}
+- `name`: [`<string>`][string] name of the function, default: 'anonymous'
+
+_Returns:_ [`<Function>`][function] function to check with, will forward all
+arguments to fn, and result from fn
+
+Check that fn is not called.
+
+##### ImperativeTest.prototype.notEqual(actual, expected\[, message\])
+
+- `actual`: `<any>` actual data
+- `expected`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected for non-strict not-equality.
+
+##### ImperativeTest.prototype.notOk(value\[, message\])
+
+- `value`: `<any>` value to check
+- `message`: [`<string>`][string] description of the check, optional
+
+Check if value is falsy.
+
+##### ImperativeTest.prototype.notSameTopology(obj1, obj2\[, message\])
+
+- `obj1`: `<any>` actual data
+- `obj2`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected to not have the same topology.
+
+##### ImperativeTest.prototype.ok(value\[, message\])
+
+- `value`: `<any>` value to check
+- `message`: [`<string>`][string] description of the check, optional
+
+Check if value is truthy.
+
+##### ImperativeTest.prototype.on(name, listener)
+
+##### ImperativeTest.prototype.pass(\[message\])
+
+- `message`: [`<string>`][string] message to record
+
+Record a passing assertion.
+
+##### ImperativeTest.prototype.plan(n)
+
+- `n`: [`<number>`][number] amount of assertions
+
+Plan this test to have exactly n assertions and end test after
+
+this amount of assertions is reached.
+
+##### ImperativeTest.prototype.regex(regex, input\[, message\])
+
+- `regex`: [`<RegExp>`][regexp]|[`<string>`][string] pattern to match
+- `input`: [`<string>`][string] input to check
+- `message`: [`<string>`][string]
+
+Test whether input matches the provided RegExp.
+
+##### ImperativeTest.prototype.rejects(input, err)
+
+- `input`: `<Promise | Function>` promise of function returning thenable
+- `err`: `<any>` value to be checked with [`test.isError()`][test.iserror()]
+  against rejected value
+
+Check that input rejects.
+
+##### ImperativeTest.prototype.resolves(input\[, expected\])
+
+- `input`: `<Promise | Function>` promise of function returning thenable
+- `expected`: `<any>` if passed it will be checked with
+  [`test.strictSame()`][test.strictsame()] against resolved value
+
+Verify that input resolves.
+
+##### ImperativeTest.prototype.run()
+
+Start running the test.
+
+##### ImperativeTest.prototype.same(actual, expected\[, message\])
+
+- `actual`: `<any>` actual data
+- `expected`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected for non-strict equality.
+
+##### ImperativeTest.prototype.sameTopology(obj1, obj2\[, message\])
+
+- `obj1`: `<any>` actual data
+- `obj2`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected to have same topology.
+
+Useful for comparing objects with circular references for equality.
+
+##### ImperativeTest.prototype.strictEqual(actual, expected\[, message\])
+
+- `actual`: `<any>` actual data
+- `expected`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected for strict equality.
+
+##### ImperativeTest.prototype.strictNotSame(actual, expected\[, message\])
+
+- `actual`: `<any>` actual data
+- `expected`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected for strict non-equality.
+
+##### ImperativeTest.prototype.strictSame(actual, expected\[, message\])
+
+- `actual`: `<any>` actual data
+- `expected`: `<any>` expected data
+- `message`: [`<string>`][string] description of the check, optional
+
+Compare actual and expected for strict equality.
+
+##### ImperativeTest.prototype.test(caption, func, options)
+
+- `caption`: [`<string>`][string] name of the test
+- `func`: [`<Function>`][function] test function
+  - `test`: [`<ImperativeTest>`][imperativetest] test instance
+- `options`: `<TestOptions>`
+  - `run`: [`<boolean>`][boolean] auto start test, default: true
+  - `async`: [`<boolean>`][boolean] if true do nothing, if false auto-end test
+    on nextTick after `func` run, default: true
+  - `timeout`: [`<number>`][number] time in milliseconds after which test is
+    considered timeouted.
+  - `parallelSubtests`: [`<boolean>`][boolean] if true subtests will be run in
+    parallel, otherwise subtests are run sequentially, default: false
+  - `dependentSubtests`: [`<boolean>`][boolean] if true each subtest will be
+    executed sequentially in order of addition to the parent test
+    short-circuiting if any subtest fails, default: false
+
+_Returns:_ [`<ImperativeTest>`][imperativetest] subtest instance
+
+Create a subtest of this test.
+
+If the subtest fails this test will fail as well.
+
+##### ImperativeTest.prototype.testAsync(message, func, options = {})
+
+Create an asynchronous subtest of this test.
+
+Simple wrapper for [`test.test()`][test.test()] setting `async` option to
+`true`.
+
+##### ImperativeTest.prototype.testSync(message, func, options = {})
+
+Create a synchronous subtest of this test
+
+Simple wrapper for [`test.test()`][test.test()] setting `async` option to
+`false`.
+
+##### ImperativeTest.prototype.throws(fn\[, expected\[, message\]\])
+
+- `fn`: [`<Function>`][function] function to run
+- `expected`: `<any>` expected error, default: new Error()
+- `message`: [`<string>`][string] description of the check, optional
+
+Check that fn throws expected error.
+
+##### ImperativeTest.prototype.type(obj, type\[, message\])
+
+- `obj`: `<any>` value to check
+- `type`: `<string | Function>` class or class name to check
+- `message`: [`<string>`][string] description of the check, optional
+
+Check if obj is of specified type.
 
 #### class DeclarativeTest extends Test
 
@@ -327,435 +756,6 @@ _Returns:_ [`<string>`][string] valid CSV representation of the results
 
 Convert metatests.measure result to csv.
 
-#### class ImperativeTest extends Test
-
-##### ImperativeTest.prototype.constructor(caption, func, options)
-
-##### ImperativeTest.prototype.afterEach(func)
-
-- `func`: [`<Function>`][function]
-  - `subtest`: `<ImperativeTest>` test instance
-  - `callback`: [`<Function>`][function]
-  - _Returns:_ [`<Promise>`][promise]|`<void>`
-
-Set a function to run after each subtest.
-
-The function must either return a promise or call a callback.
-
-##### ImperativeTest.prototype.assert(value\[, message\])
-
-- `value`: `<any>` value to check
-- `message`: [`<string>`][string] description of the check, optional
-
-Check if value is truthy.
-
-##### ImperativeTest.prototype.assertNot(value\[, message\])
-
-- `value`: `<any>` value to check
-- `message`: [`<string>`][string] description of the check, optional
-
-Check if value is falsy.
-
-##### ImperativeTest.prototype.bailout(\[err\]\[, message\])
-
-- `err`: [`<Error>`][error] bailout error
-- `message`: [`<string>`][string] bailout message
-
-Fail this test and throw an error.
-
-If both `err` and `message` are provided `err.toString()` will be appended to
-`message`.
-
-##### ImperativeTest.prototype.beforeEach(func)
-
-- `func`: [`<Function>`][function]
-  - `subtest`: `<ImperativeTest>` test instance
-  - `callback`: [`<Function>`][function]
-    - `context`: `<any>` context of the test. It will pe passed as a second
-      argument to test function and is available at `test.context`
-  - _Returns:_ [`<Promise>`][promise]|`<void>` nothing or `Promise` resolved
-    with context
-
-Set a function to run before each subtest.
-
-The function must either return a promise or call a callback.
-
-##### ImperativeTest.prototype.case(message, namespace, list, options = {})
-
-Create a declarative [`case()`][case()] subtest of this test.
-
-##### ImperativeTest.prototype.cb(\[msg\]\[, cb\])
-
-- `msg`: [`<string>`][string] test.error message
-- `cb`: [`<Function>`][function] callback function
-
-_Returns:_ [`<Function>`][function] function to pass to callback
-
-Create error-first callback wrapper to perform automatic checks.
-
-This will check for [`test.mustCall()`][test.mustcall()] the callback and
-`{test.error()}` the first callback argument.
-
-##### ImperativeTest.prototype.cbFail(\[fail\]\[, cb\[, afterAllCb\]\])
-
-- `fail`: [`<string>`][string] test.fail message
-- `cb`: [`<Function>`][function] callback function to call if there was no error
-- `afterAllCb`: [`<Function>`][function] function called after callback handling
-
-_Returns:_ [`<Function>`][function] function to pass to callback
-
-Create error-first callback wrapper to fail test if call fails.
-
-This will check for [`test.mustCall()`][test.mustcall()] the callback and if the
-call errored will use `{test.fail()}` and `{test.end()}`
-
-##### ImperativeTest.prototype.contains(actual, subObj\[, message\[, sort\[, test\]\]\])
-
-- `actual`: `<any>` actual data
-- `subObj`: `<any>` expected properties
-- `message`: [`<string>`][string] description of the check, optional
-- `sort` <boolean | Function> if true or a sort function sort data properties,
-  default: false
-- `test`: [`<Function>`][function] test function, default: compare.strictEqual
-  - `actual`: `<any>`
-  - `expected`: `<any>`
-  - _Returns:_ [`<boolean>`][boolean] true if actual is equal to expected, false
-    otherwise
-
-Check that actual contains all properties of subObj.
-
-Properties will be compared with test function.
-
-##### ImperativeTest.prototype.containsGreedy(actual, subObj\[, message\[, sort\[, test\]\]\])
-
-- `actual`: `<any>` actual data
-- `subObj`: `<any>` expected properties
-- `message`: [`<string>`][string] description of the check, optional
-- `test`: [`<Function>`][function] test function, default: compare.strictEqual
-  - `actual`: `<any>`
-  - `expected`: `<any>`
-  - _Returns:_ [`<boolean>`][boolean] true if actual is equal to expected, false
-    otherwise
-
-Check greedily that actual contains all properties of subObj.
-
-Similar to [`test.contains()`][test.contains()] but will succeed if at least one
-of the properties in actual match the one in subObj.
-
-##### ImperativeTest.prototype.doesNotThrow(fn\[, message\])
-
-- `fn`: [`<Function>`][function] function to run
-- `message`: [`<string>`][string] description of the check, optional
-
-Check that fn doesn't throw.
-
-##### ImperativeTest.prototype.end()
-
-Finish the test.
-
-This will fail if the test has unfinished subtests or plan is not complete.
-
-##### ImperativeTest.prototype.endAfterSubtests()
-
-Mark this test to call end after its subtests are done.
-
-##### ImperativeTest.prototype.equal(actual, expected\[, message\])
-
-- `actual`: `<any>` actual data
-- `expected`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected for non-strict equality.
-
-##### ImperativeTest.prototype.error(err\[, message\])
-
-- `err`: `<any>` error to check
-- `message`: [`<string>`][string] description of the check, optional
-
-Fail if err is instance of Error.
-
-##### ImperativeTest.prototype.fail(\[message\]\[, err\])
-
-- `message` <string | Error> failure message or error, optional
-- `err`: [`<Error>`][error] error, optional
-
-Fail this test recording failure message.
-
-This doesn't call [`test.end()`][test.end()].
-
-##### ImperativeTest.prototype.is(checkFn, val\[, message\])
-
-- `checkFn`: [`<Function>`][function] condition function
-  - `val`: `<any>` provided value
-- _Returns:_ [`<boolean>`][boolean] true if condition is satisfied and false
-  otherwise
-- `val`: `<any>` value to check the condition against
-- `message`: [`<string>`][string] check message, optional
-
-Check whether `val` satisfies custom `checkFn` condition.
-
-##### ImperativeTest.prototype.isArray(val\[, message\])
-
-- `val`: `<any>` value to check
-- `message`: [`<string>`][string] check message, optional
-
-Check if `val` satisfies `Array.isArray`.
-
-##### ImperativeTest.prototype.isBuffer(val\[, message\])
-
-- `val`: `<any>` value to check
-- `message`: [`<string>`][string] check message, optional
-
-Check if `val` satisfies `Buffer.isBuffer`.
-
-##### ImperativeTest.prototype.isError(actual\[, expected\[, message\]\])
-
-- `actual`: `<any>` actual error to compare
-- `expected`: `<any>` expected error, default: new Error()
-- `message`: [`<string>`][string] description of the check, optional
-
-Check if actual is equal to expected error.
-
-##### ImperativeTest.prototype.isRejected(input, err)
-
-- `input` <Promise | Function> promise of function returning thenable
-- `err`: `<any>` value to be checked with [`test.isError()`][test.iserror()]
-  against rejected value
-
-Check that input rejects.
-
-##### ImperativeTest.prototype.isResolved(input\[, expected\])
-
-- `input` <Promise | Function> promise of function returning thenable
-- `expected`: `<any>` if passed it will be checked with
-  [`test.strictSame()`][test.strictsame()] against resolved value
-
-Verify that input resolves.
-
-##### ImperativeTest.prototype.mustCall(\[fn\[, count\[, name\]\]\])
-
-- `fn`: [`<Function>`][function] function to be checked, default: () => {}
-- `count`: [`<number>`][number] amount of times fn must be called, default: 1
-- `name`: [`<string>`][string] name of the function, default: 'anonymous'
-
-_Returns:_ [`<Function>`][function] function to check with, will forward all
-arguments to fn, and result from fn
-
-Check that fn is called specified amount of times.
-
-##### ImperativeTest.prototype.mustNotCall(\[fn\[, name\]\])
-
-- `fn`: [`<Function>`][function] function to not be checked, default: () => {}
-- `name`: [`<string>`][string] name of the function, default: 'anonymous'
-
-_Returns:_ [`<Function>`][function] function to check with, will forward all
-arguments to fn, and result from fn
-
-Check that fn is not called.
-
-##### ImperativeTest.prototype.notEqual(actual, expected\[, message\])
-
-- `actual`: `<any>` actual data
-- `expected`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected for non-strict not-equality.
-
-##### ImperativeTest.prototype.notOk(value\[, message\])
-
-- `value`: `<any>` value to check
-- `message`: [`<string>`][string] description of the check, optional
-
-Check if value is falsy.
-
-##### ImperativeTest.prototype.notSameTopology(obj1, obj2\[, message\])
-
-- `obj1`: `<any>` actual data
-- `obj2`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected to not have the same topology.
-
-##### ImperativeTest.prototype.ok(value\[, message\])
-
-- `value`: `<any>` value to check
-- `message`: [`<string>`][string] description of the check, optional
-
-Check if value is truthy.
-
-##### ImperativeTest.prototype.on(name, listener)
-
-##### ImperativeTest.prototype.pass(\[message\])
-
-- `message`: [`<string>`][string] message to record
-
-Record a passing assertion.
-
-##### ImperativeTest.prototype.plan(n)
-
-- `n`: [`<number>`][number] amount of assertions
-
-Plan this test to have exactly n assertions and end test after
-
-this amount of assertions is reached.
-
-##### ImperativeTest.prototype.regex(regex, input\[, message\])
-
-- `regex`: [`<RegExp>`][regexp]|[`<string>`][string] pattern to match
-- `input`: [`<string>`][string] input to check
-- `message`: [`<string>`][string]
-
-Test whether input matches the provided RegExp.
-
-##### ImperativeTest.prototype.rejects(input, err)
-
-- `input` <Promise | Function> promise of function returning thenable
-- `err`: `<any>` value to be checked with [`test.isError()`][test.iserror()]
-  against rejected value
-
-Check that input rejects.
-
-##### ImperativeTest.prototype.resolves(input\[, expected\])
-
-- `input` <Promise | Function> promise of function returning thenable
-- `expected`: `<any>` if passed it will be checked with
-  [`test.strictSame()`][test.strictsame()] against resolved value
-
-Verify that input resolves.
-
-##### ImperativeTest.prototype.run()
-
-Start running the test.
-
-##### ImperativeTest.prototype.same(actual, expected\[, message\])
-
-- `actual`: `<any>` actual data
-- `expected`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected for non-strict equality.
-
-##### ImperativeTest.prototype.sameTopology(obj1, obj2\[, message\])
-
-- `obj1`: `<any>` actual data
-- `obj2`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected to have same topology.
-
-Useful for comparing objects with circular references for equality.
-
-##### ImperativeTest.prototype.strictEqual(actual, expected\[, message\])
-
-- `actual`: `<any>` actual data
-- `expected`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected for strict equality.
-
-##### ImperativeTest.prototype.strictNotSame(actual, expected\[, message\])
-
-- `actual`: `<any>` actual data
-- `expected`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected for strict non-equality.
-
-##### ImperativeTest.prototype.strictSame(actual, expected\[, message\])
-
-- `actual`: `<any>` actual data
-- `expected`: `<any>` expected data
-- `message`: [`<string>`][string] description of the check, optional
-
-Compare actual and expected for strict equality.
-
-##### ImperativeTest.prototype.test(caption, func, options)
-
-- `caption`: [`<string>`][string] name of the test
-- `func`: [`<Function>`][function] test function
-  - `test`: `<ImperativeTest>` test instance
-- `options`: `<TestOptions>`
-  - `run`: [`<boolean>`][boolean] auto start test, default: true
-  - `async`: [`<boolean>`][boolean] if true do nothing, if false auto-end test
-    on nextTick after `func` run, default: true
-  - `timeout`: [`<number>`][number] time in milliseconds after which test is
-    considered timeouted.
-  - `parallelSubtests`: [`<boolean>`][boolean] if true subtests will be run in
-    parallel, otherwise subtests are run sequentially, default: false
-  - `dependentSubtests`: [`<boolean>`][boolean] if true each subtest will be
-    executed sequentially in order of addition to the parent test
-    short-circuiting if any subtest fails, default: false
-
-_Returns:_ `<ImperativeTest>` subtest instance
-
-Create a subtest of this test.
-
-If the subtest fails this test will fail as well.
-
-##### ImperativeTest.prototype.testAsync(message, func, options = {})
-
-Create an asynchronous subtest of this test.
-
-Simple wrapper for [`test.test()`][test.test()] setting `async` option to
-`true`.
-
-##### ImperativeTest.prototype.testSync(message, func, options = {})
-
-Create a synchronous subtest of this test
-
-Simple wrapper for [`test.test()`][test.test()] setting `async` option to
-`false`.
-
-##### ImperativeTest.prototype.throws(fn\[, expected\[, message\]\])
-
-- `fn`: [`<Function>`][function] function to run
-- `expected`: `<any>` expected error, default: new Error()
-- `message`: [`<string>`][string] description of the check, optional
-
-Check that fn throws expected error.
-
-##### ImperativeTest.prototype.type(obj, type\[, message\])
-
-- `obj`: `<any>` value to check
-- `type` <string | Function> class or class name to check
-- `message`: [`<string>`][string] description of the check, optional
-
-Check if obj is of specified type.
-
-#### test(caption, func\[, options\[, runner\]\])
-
-- `caption`: [`<string>`][string] name of the test
-- `func`: [`<Function>`][function] test function
-  - `test`: `<ImperativeTest>` test instance
-- `options`: `<TestOptions>`
-  - `run`: [`<boolean>`][boolean] auto start test, default: true
-  - `async`: [`<boolean>`][boolean] if true do nothing, if false auto-end test
-    on nextTick after `func` run, default: true
-  - `timeout`: [`<number>`][number] time in milliseconds after which test is
-    considered timeouted.
-  - `parallelSubtests`: [`<boolean>`][boolean] if true subtests will be run in
-    parallel, otherwise subtests are run sequentially, default: false
-  - `dependentSubtests`: [`<boolean>`][boolean] if true each subtest will be
-    executed sequentially in order of addition to the parent test
-    short-circuiting if any subtest fails, default: false
-- `runner`: [`<Runner>`][runner] runner instance to use to run this test
-
-_Returns:_ `<ImperativeTest>` test instance
-
-Create a test case.
-
-#### testSync(caption, func, options = {}, runner = runnerInstance)
-
-Create a synchronous test
-
-Simple wrapper for [`test()`][test()] setting `async` option to `false`.
-
-#### testAsync(caption, func, options = {}, runner = runnerInstance)
-
-Create an asynchronous test
-
-Simple wrapper for [`test()`][test()] setting `async` option to `true`.
-
 [object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 [regexp]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
@@ -772,5 +772,7 @@ Simple wrapper for [`test()`][test()] setting `async` option to `true`.
 [test.contains()]: #imperativetestprototypecontainsactual-subobj-message-sort-test
 [test.mustcall()]: #imperativetestprototypemustcallfn-count-name
 [test.iserror()]: #imperativetestprototypeiserroractual-expected-message
+[test.fail()]: #imperativetestprototypefailmessage-err
 [test.end()]: #imperativetestprototypeend
 [case()]: #casecaption-namespace-list-runner
+[imperativetest]: class-imperativetest-extends-test
